@@ -1,7 +1,7 @@
 // 环境配置封装
 const env = import.meta.env.MODE || 'prod'
 const EnvConfig = {
-  dnv: {
+  development: {
     baseApi: '/',
     mockApi:''
   },
