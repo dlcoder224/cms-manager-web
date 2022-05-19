@@ -9,7 +9,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
   server: {
     post: 'loaclhost',
-    // port: 8080
+    port: 8080
   },
   plugins: [
     vue(),

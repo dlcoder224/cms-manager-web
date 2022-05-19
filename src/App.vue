@@ -5,8 +5,10 @@ export default {
 </script>
 
 <template>
-  <router-view/>
+    <router-view/>
 </template>
 
-<style>
+<style lang="scss">
+@import url('@/assets/css/reset.css');
+// @import url('@/assets/css/reset.scss');
 </style>

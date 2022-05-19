@@ -2,9 +2,10 @@
 import axios from "axios";
 import config from '@/config'
 import { ElMessage } from "element-plus";
-import { useRouter } from "vue-router";
+// import { useRouter } from "vue-router";
+import router from '@/router'
 
-const router = useRouter();
+// const router = useRouter();
 const TOKEN_INVALID = 'Token 认证失败，请重新登录！'
 const NETWORK_ERROR = '网络异常'
 
@@ -18,7 +19,7 @@ instance.interceptors.request.use(req => {
   if (!headers.Autoorization) {
     headers.Autoorization = "Jack"
   }
-  
+
 })
 
 // 响应拦截
@@ -44,12 +45,16 @@ instance.interceptors.response.use(res => {
 function request(options) {
   // 封装get请求数据
   options.method = options.method || 'get'
-  if(options.method.toLowerCase() === 'get') {
+  if (options.method.toLowerCase() === 'get') {
     options.params = options.data;
   }
 
+  if (typeof options.mock !== 'undefined') {
+    config.mock = options.mock
+  }
+
   // prod 生产环境
-  if(config.env === 'prod') {
+  if (config.env === 'prod') {
     instance.defaults.baseURL = config.baseApi
   } else {
     instance.defaults.baseURL = config.mock ? config.mockApi : config.baseApi
@@ -57,8 +62,8 @@ function request(options) {
   return instance(options)
 }
 
-['get','post','put','delete','patch'].forEach(item => {
-  request[item] = (url,data,options) => {
+['get', 'post', 'put', 'delete', 'patch'].forEach(item => {
+  request[item] = (url, data, options) => {
     return request({
       url,
       data,
