@@ -2,11 +2,13 @@
 import request from '@/utils/request'
 
 export default {
+  // 登录接口
   login(params) {
-    request({
-      url: '/user/login',
-      method: 'get',
+    return request({
+      url: '/users/login',
+      method: 'post',
       data: params,
+      mock: false
     })
   }
 }

@@ -18,38 +18,49 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
-import { useStore } from 'vuex'
+import { getCurrentInstance, reactive, ref } from "vue";
+import { useStore } from "vuex";
+import request from "@/utils/request";
+import router from "../router";
 
-const store = useStore()
+const store = useStore();
+const {
+  proxy: { $api },
+} = getCurrentInstance();
 
-const user = reactive({})
+const user = reactive({
+  userName: 'admin',
+  userPwd: 'admin'
+});
+
 const userRules = reactive({
   userName: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 6, max: 15, message: '长度在6~15之间', trigger: 'blur' },
+    { required: true, message: "请输入用户名", trigger: "blur" },
+    { min: 3, max: 15, message: "长度在3~15之间", trigger: "blur" },
   ],
-  userPwd: [
-    { required: true.valueOf, message: '请输入密码', trigger: 'blur' }
-  ]
-})
-const userFormRef = ref()
+  userPwd: [{ required: true.valueOf, message: "请输入密码", trigger: "blur" }],
+});
+
+const userFormRef = ref();
 
 const login = async (formEl) => {
-  if (!formEl) return
+  if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log('submit!')
-      this.$api.login(user).then((res) => {
-        store.commit('saveUserInfo', res)
-      }).catch((err) => {
-
-      });
+      $api
+        .login(user)
+        .then((res) => {
+          const { userName } = res
+          store.commit("saveUserInfo", res);
+          ElMessage.success(`${userName}登录成功`)
+          router.push('/')
+        })
+        .catch((err) => { });
     } else {
-      console.log('error submit!', fields)
+      console.log("error submit!", fields);
     }
-  })
-}
+  });
+};
 </script>
 
 <style lang="scss" scoped>

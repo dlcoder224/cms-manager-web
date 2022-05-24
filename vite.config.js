@@ -9,7 +9,12 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
   server: {
     post: 'loaclhost',
-    port: 8080
+    port: 8080,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000'
+      }
+    }
   },
   plugins: [
     vue(),
@@ -24,7 +29,7 @@ export default defineConfig({
     // 配置路径别名
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      'views': path.resolve(__dirname,'@/views')
+      'views': path.resolve(__dirname, '@/views')
     }
   }
 })

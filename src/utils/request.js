@@ -1,7 +1,7 @@
 // axios 二次封装
 import axios from "axios";
 import config from '@/config'
-import { ElMessage } from "element-plus";
+// import { ElMessage } from "element-plus";
 // import { useRouter } from "vue-router";
 import router from '@/router'
 
@@ -14,12 +14,13 @@ const instance = axios.create({
   timeout: 8000
 })
 
+// 请求拦截
 instance.interceptors.request.use(req => {
   const { headers } = req
   if (!headers.Autoorization) {
     headers.Autoorization = "Jack"
   }
-
+  return req;
 })
 
 // 响应拦截
@@ -28,7 +29,7 @@ instance.interceptors.response.use(res => {
 
   if (code === 200) {
     return data
-  } else if (code === 40001) {
+  } else if (code === 50001) {
     ElMessage.error(TOKEN_INVALID)
     setTimeout(() => {
       router.push('/login')
