@@ -19,11 +19,11 @@
 
 <script setup>
 import { getCurrentInstance, reactive, ref } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import request from "@/utils/request";
-import router from "../router";
 
 const store = useStore();
+const router = useRouter()
 const {
   proxy: { $api },
 } = getCurrentInstance();
@@ -53,7 +53,7 @@ const login = async (formEl) => {
           const { userName } = res
           store.commit("saveUserInfo", res);
           ElMessage.success(`${userName}登录成功`)
-          router.push('/')
+          router.push('/homeIndex')
         })
         .catch((err) => { });
     } else {

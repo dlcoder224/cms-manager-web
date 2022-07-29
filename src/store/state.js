@@ -1,5 +1,6 @@
 import storage from '@/utils/storage'
 
 export default {
-  userInfo: "" || storage.getItem("userInfo")
+  userInfo: "" || storage.getItem("userInfo"),
+  isCollapse: true
 }
