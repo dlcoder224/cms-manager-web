@@ -6,7 +6,7 @@ import api from '@/api'
 import storage from '@/utils/storage'
 import store from '@/store'
 
-console.log(import.meta.env)
+// console.log(import.meta.env)
 const app = createApp(App)
 
 app.config.globalProperties.$api = api
