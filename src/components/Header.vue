@@ -49,7 +49,7 @@ const {
 } = getCurrentInstance();
 
 onMounted(() => {
-  getNoticeCount();
+  // getNoticeCount();
 });
 
 const getNoticeCount = async () => {

@@ -21,7 +21,15 @@ const routes = [
           title: '欢迎首页'
         },
         component: () => import('@/views/home/index.vue')
-      }
+      },
+      {
+        name: 'user',
+        path: '/user',
+        meta: {
+          title: '用户'
+        },
+        component: () => import('@/views/user/index.vue')
+      },
     ]
   },
   {

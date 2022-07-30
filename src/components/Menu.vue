@@ -59,7 +59,7 @@ const menuList = reactive([]);
 const activeMenu = ref("");
 
 onMounted(() => {
-  getMenuList();
+  // getMenuList();
 });
 
 const getMenuList = async () => {
