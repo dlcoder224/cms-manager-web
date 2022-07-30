@@ -23,23 +23,38 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button>查询</el-button>
+          <el-button type="primary">查询</el-button>
           <el-button>重置</el-button>
         </el-form-item>
       </el-form>
+    </el-row>
+    <el-row class="base-table">
+      <el-row class="action"></el-row>
+      <el-table :data="tableData" style="width: 100%">
+        <el-table-column prop="date" label="Date" width="180" />
+        <el-table-column prop="name" label="Name" width="180" />
+        <el-table-column prop="address" label="Address" />
+      </el-table>
     </el-row>
   </el-row>
 </template>
 
 <script setup>
-import { reactive } from "vue";
-
 const userForm = reactive({
   userID: "",
   userName: "",
   region: "",
 });
+const tableData = ref([]);
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.user-manage {
+  display: flex;
+  flex-direction: column;
+  .query-form {
+  }
+  .base-table {
+  }
+}
 </style>

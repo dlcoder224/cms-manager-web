@@ -23,6 +23,9 @@ export default defineConfig({
     vue(),
     AutoImport({
       resolvers: [ElementPlusResolver()],
+      // 可以自定义文件生成的位置，默认是根目录下，使用ts的建议放src目录下
+      dts: 'src/auto-imports.d.js',
+      imports: ['vue']
     }),
     Components({
       resolvers: [ElementPlusResolver()],
