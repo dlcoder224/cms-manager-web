@@ -1,11 +1,11 @@
-// storge 二次封装
+// storage 二次封装
 import config from "../config"
 
 export default {
-  setItem(key,val) {
-   let storage =  this.getStroage()
-   storage[key] = {[key]:val}
-    window.localStorage.setItem(config.namespace,JSON.stringify(storage))
+  setItem(key, val) {
+    let storage = this.getStroage()
+    storage[key] = { [key]: val }
+    window.localStorage.setItem(config.namespace, JSON.stringify(storage))
   },
 
   getItem(key) {
@@ -19,7 +19,7 @@ export default {
   clearItem(key) {
     let storage = this.getStroage()
     delete storage[key]
-    window.localStorage.setItem(config.namespace,JSON.stringify(storage))
+    window.localStorage.setItem(config.namespace, JSON.stringify(storage))
   },
 
   clearAll() {

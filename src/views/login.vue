@@ -4,13 +4,28 @@
       <el-form :model="user" status-icon :rules="userRules" ref="userFormRef">
         <div class="title">地球</div>
         <el-form-item prop="userName">
-          <el-input type="text" placeholder="请输入用户名" prefix-icon="User" v-model="user.userName"></el-input>
+          <el-input
+            type="text"
+            placeholder="请输入用户名"
+            prefix-icon="User"
+            v-model="user.userName"
+          ></el-input>
         </el-form-item>
         <el-form-item prop="userPwd">
-          <el-input type="password" placeholder="请输入密码" prefix-icon="View" v-model="user.userPwd"></el-input>
+          <el-input
+            type="password"
+            placeholder="请输入密码"
+            prefix-icon="View"
+            v-model="user.userPwd"
+          ></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" class="btn-login" @click="login(userFormRef)">登录</el-button>
+          <el-button
+            type="primary"
+            class="btn-login"
+            @click="login(userFormRef)"
+            >登录</el-button
+          >
         </el-form-item>
       </el-form>
     </div>
@@ -23,14 +38,14 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const store = useStore();
-const router = useRouter()
+const router = useRouter();
 const {
   proxy: { $api },
 } = getCurrentInstance();
 
 const user = reactive({
-  userName: 'admin',
-  userPwd: 'admin'
+  userName: "admin",
+  userPwd: "admin",
 });
 
 const userRules = reactive({
@@ -50,12 +65,12 @@ const login = async (formEl) => {
       $api
         .login(user)
         .then((res) => {
-          const { userName } = res
+          const { userName } = res;
           store.commit("saveUserInfo", res);
-          ElMessage.success(`${userName}登录成功`)
-          router.push('/homeIndex')
+          ElMessage.success(`${userName}登录成功`);
+          router.push("/homeIndex");
         })
-        .catch((err) => { });
+        .catch((err) => {});
     } else {
       console.log("error submit!", fields);
     }

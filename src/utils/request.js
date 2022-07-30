@@ -4,6 +4,7 @@ import config from '@/config'
 // import { ElMessage } from "element-plus";
 // import { useRouter } from "vue-router";
 import router from '@/router'
+import storage from "./storage";
 
 // const router = useRouter();
 const TOKEN_INVALID = 'Token 认证失败，请重新登录！'
@@ -14,11 +15,15 @@ const instance = axios.create({
   timeout: 8000
 })
 
+const userInfo = storage.getItem('userInfo') || ''
+const { token = '' } = userInfo.userInfo
+
 // 请求拦截
 instance.interceptors.request.use(req => {
   const { headers } = req
+
   if (!headers.Autoorization) {
-    headers.Autoorization = "Jack"
+    headers.Autoorization = 'Bearer' + ' ' + token
   }
   return req;
 })

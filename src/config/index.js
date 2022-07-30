@@ -6,11 +6,11 @@ const EnvConfig = {
     mockApi: 'https://www.fastmock.site/mock/f5d7d3c98bcd9f6bcc94ce5bc2b3cf91/api'
   },
   test: {
-    baseApi: '',
+    baseApi: '/api',
     mockApi: 'https://www.fastmock.site/mock/f5d7d3c98bcd9f6bcc94ce5bc2b3cf91/api'
   },
   prod: {
-    baseApi: '',
+    baseApi: '/api',
     mockApi: 'https://www.fastmock.site/mock/f5d7d3c98bcd9f6bcc94ce5bc2b3cf91/api'
   }
 }
